@@ -1,2 +1,63 @@
-# MLOps-airflow-etl-project
-ETL, созданный с помощью Apache Airflow для расчета ежемесячных показателей активности клиентов. Включает базовую версию и распараллеленную версию DAG для оптимизации производительности.
+<p align="left">
+  <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python"/>
+  <img src="https://img.shields.io/badge/Apache%20Airflow-017CEE?style=for-the-badge&logo=Apache%20Airflow&logoColor=white" alt="Apache Airflow"/>
+  <img src="https://img.shields.io/badge/Pandas-150458?style=for-the-badge&logo=pandas&logoColor=white" alt="Pandas"/>
+  <img src="https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white" alt="MySQL"/>
+  <img src="https://img.shields.io/badge/Ubuntu-E95420?style=for-the-badge&logo=ubuntu&logoColor=white" alt="Ubuntu"/>
+</p>
+
+Это учебный проект по MLOPS. Цель проекта — построить ETL-процесс на базе Apache Airflow для расчета витрины с флагами активности клиентов по различным продуктам.
+
+## Описание задачи
+
+Необходимо было реализовать DAG в Apache Airflow, который по расписанию (каждый месяц 5-го числа) запускает расчёт витрины активности клиентов. Также, дополнительно оптимизированная версия DAG, в которой этап `Transform` распараллелен по 10 продуктам для ускорения обработки.
+
+### ETL-процесс
+
+1.  **Extract:** Чтение исходных данных о транзакциях клиентов из файла `profit_table.csv`.
+2.  **Transform:** Расчет флагов активности. Клиент считается активным по продукту, если за последние 3 месяца у него были ненулевые транзакции. Логика расчета реализована в скрипте `transform_script.py`.
+3.  **Load:** Сохранение рассчитанных флагов в итоговый CSV-файл `flags_activity.csv` в режиме добавления новых данных без перезаписи старых.
+
+
+## Используемые технологии
+
+*   **Python 3.10**
+*   **Apache Airflow** для оркестрации
+*   **Pandas** для обработки данных
+*   **MySQL** в качестве бэкенда для Airflow
+*   **WSL (Ubuntu)** как среда для развертывания
+
+---
+
+## Структура проекта
+```
+├── dags/
+│ ├── student_etl_dag.py # Простой DAG 
+│ └── task_parallel_dag.py # Параллельный DAG 
+├── data/
+│ └── profit_table.csv # Исходные данные
+├── scripts/
+│ └── transform_script.py # Скрипт с логикой трансформации
+├── .gitignore # Файл для исключения временных файлов из Git
+└── requirements.txt # Список зависимостей Python
+```
+---
+
+## Результаты выполнения
+
+### Простой DAG
+
+**Граф DAG `Elizaveta_Bolshova`:**
+![Простой DAG - Граф](Скрин_загружу_позже.png)
+
+**Успешный запуск DAG `Elizaveta_Bolshova`:**
+![Простой DAG - Успешный запуск](Скрин_загружу_позже.png.png)
+
+### Параллельный DAG
+
+**Граф DAG `Elizaveta_Bolshova_parallel_dag`:**
+![Параллельный DAG - Граф](Скрин_загружу_позже.png.png)
+
+**Успешный запуск DAG `Elizaveta_Bolshova_parallel_dag`:**
+![Параллельный DAG - Успешный запуск](Скрин_загружу_позже.png.png)
+
