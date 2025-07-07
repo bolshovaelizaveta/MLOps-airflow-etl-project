@@ -35,8 +35,7 @@
 ├── dags/
 │ ├── student_etl_dag.py # Простой DAG 
 │ └── task_parallel_dag.py # Параллельный DAG 
-├── data/
-│ └── profit_table.csv # Исходные данные
+├── presentation/ # Скрины проекта
 ├── scripts/
 │ └── transform_script.py # Скрипт с логикой трансформации
 ├── .gitignore # Файл для исключения временных файлов из Git
@@ -49,16 +48,16 @@
 ### Простой DAG
 
 **Граф DAG `Elizaveta_Bolshova`:**
-![Простой DAG - Граф](Скрин_загружу_позже.png)
+![Простой DAG - Граф](presentation/1 scr.jpg)
 
 **Успешный запуск DAG `Elizaveta_Bolshova`:**
-![Простой DAG - Успешный запуск](Скрин_загружу_позже.png.png)
+![Простой DAG - Успешный запуск](presentation/2 scr.jpg)
 
 ### Параллельный DAG
 
 **Граф DAG `Elizaveta_Bolshova_parallel_dag`:**
-![Параллельный DAG - Граф](Скрин_загружу_позже.png.png)
+![Параллельный DAG - Граф](presentation/3 scr.jpg)
 
 **Успешный запуск DAG `Elizaveta_Bolshova_parallel_dag`:**
-![Параллельный DAG - Успешный запуск](Скрин_загружу_позже.png.png)
+![Параллельный DAG - Успешный запуск](presentation/4 scr.jpg)
 
