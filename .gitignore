@@ -1,0 +1,29 @@
+# Виртуальные окружения Python
+airflow-venv/
+venv/
+
+# Файлы кэша Python
+__pycache__/
+*.pyc
+get-pip.py
+
+# Служебные файлы IDE
+.vscode/
+.idea/
+
+# Служебные файлы
+.DS_Store
+
+# Сгенерированные данные
+data/flags_activity.csv
+data/flags_activity_parallel.csv
+
+# Логи Airflow
+*.log
+
+# Файлы .env с секретами
+.env
+
+# Слишком тяжелый csv
+data/profit_table.csv
+data/flags_activity.csv
