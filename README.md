@@ -55,8 +55,8 @@
 
 ### Параллельный DAG
 
-**Граф DAG `Elizaveta_Bolshova_parallel_dag`:**
+**Граф DAG `Elizaveta_Bolshova_parallel__simple_fixed`:**
 ![Параллельный DAG - Граф](presentation/3scr.jpg)
 
-**Успешный запуск DAG `Elizaveta_Bolshova_parallel_dag`:**
+**Успешный запуск DAG `Elizaveta_Bolshova_parallel__simple_fixed`:**
 ![Параллельный DAG - Успешный запуск](presentation/4scr.jpg)
