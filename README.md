@@ -48,16 +48,15 @@
 ### Простой DAG
 
 **Граф DAG `Elizaveta_Bolshova`:**
-![Простой DAG - Граф](presentation/1 scr.jpg)
+![Простой DAG - Граф](presentation/1scr.jpg)
 
 **Успешный запуск DAG `Elizaveta_Bolshova`:**
-![Простой DAG - Успешный запуск](presentation/2 scr.jpg)
+![Простой DAG - Успешный запуск](presentation/2scr.jpg)
 
 ### Параллельный DAG
 
 **Граф DAG `Elizaveta_Bolshova_parallel_dag`:**
-![Параллельный DAG - Граф](presentation/3 scr.jpg)
+![Параллельный DAG - Граф](presentation/3scr.jpg)
 
 **Успешный запуск DAG `Elizaveta_Bolshova_parallel_dag`:**
-![Параллельный DAG - Успешный запуск](presentation/4 scr.jpg)
-
+![Параллельный DAG - Успешный запуск](presentation/4scr.jpg)
