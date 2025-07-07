@@ -1,8 +1,25 @@
 import pandas as pd
 from pandas.tseries.offsets import DateOffset
 
+def transform_for_product(df_period: pd.DataFrame, product: str) -> pd.Series:
+    sum_col = f'sum_{product}'
+    count_col = f'count_{product}'
+    
+    # Группируем по клиенту и считаем общую сумму и количество за период
+    agg = df_period.groupby('id').agg({
+        sum_col: 'sum',
+        count_col: 'sum'
+    }).reset_index()
+    
+    # Расчет флага активности
+    flag_col = f'flag_{product}'
+    agg[flag_col] = ((agg[sum_col] > 0) & (agg[count_col] > 0)).astype(int)
+    
+    # Устанавливаем 'id' как индекс для удобного мержа
+    return agg.set_index('id')[flag_col]
+
+
 def transform(df: pd.DataFrame, date: str) -> pd.DataFrame:
-    # Рассчитывает флаги активности клиентов по продуктам на основе данных за 3 месяца
     # Преобразование строковых дат в datetime объекты для корректной фильтрации
     df['date'] = pd.to_datetime(df['date'])
     report_date = pd.to_datetime(date)
@@ -18,24 +35,11 @@ def transform(df: pd.DataFrame, date: str) -> pd.DataFrame:
     # Группировка по клиентам и агрегация данных за период
     aggregated_data = []
     for product in products:
-        sum_col = f'sum_{product}'
-        count_col = f'count_{product}'
-        
-        agg = df_period.groupby('id').agg({
-            sum_col: 'sum',
-            count_col: 'sum'
-        }).reset_index()
-        
-        # Расчет флага активности: ненулевая сумма и количество транзакций за период
-        flag_col = f'flag_{product}'
-        agg[flag_col] = ((agg[sum_col] > 0) & (agg[count_col] > 0)).astype(int)
-        
-        aggregated_data.append(agg[['id', flag_col]])
-    
+        product_series = transform_for_product(df_period.copy(), product)
+        aggregated_data.append(product_series)
+
     # Объединение флагов по всем продуктам в одну таблицу
-    result_df = aggregated_data[0]
-    for i in range(1, len(aggregated_data)):
-        result_df = pd.merge(result_df, aggregated_data[i], on='id', how='outer')
+    result_df = pd.concat(aggregated_data, axis=1).reset_index()
         
     result_df['date'] = report_date.strftime('%Y-%m-%d')
     
